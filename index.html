@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ポケモン大型併せ 参加者・スタッフ一覧</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', '"Inter"', 'sans-serif'],
+            mono: ['"Inter"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* カスタムスクロールバー（横スクロールタブ用） */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .card-checked {
+      background-color: #f0fdf4 !important;
+      border-color: #86efac !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20">
+
+  <!-- ヘッダー -->
+  <header class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white sticky top-0 z-40 shadow-md">
+    <div class="max-w-5xl mx-auto px-4 py-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-red-500 text-white text-xs font-bold shadow">
+              <i class="fa-solid fa-record-vinyl"></i>
+            </span>
+            <h1 class="text-lg sm:text-xl font-black tracking-tight">POKEMON COSPLAY LIST</h1>
+          </div>
+          <p class="text-xs text-slate-300 mt-0.5">参加者・キャラ・カメラマン・アシスタント一覧</p>
+        </div>
+
+        <!-- 統計バッジ -->
+        <div class="flex items-center gap-2 text-xs font-bold">
+          <span class="bg-white/10 px-2.5 py-1 rounded-full border border-white/15">
+            <i class="fa-solid fa-user-astronaut text-amber-400 mr-1"></i>レイヤー <span id="count-cosplayer">0</span>名
+          </span>
+          <span class="bg-white/10 px-2.5 py-1 rounded-full border border-white/15">
+            <i class="fa-solid fa-camera text-sky-400 mr-1"></i>カメラ <span id="count-camera">0</span>名
+          </span>
+          <span class="bg-white/10 px-2.5 py-1 rounded-full border border-white/15">
+            <i class="fa-solid fa-hands-helping text-emerald-400 mr-1"></i>アシ <span id="count-assistant">0</span>名
+          </span>
+        </div>
+      </div>
+
+      <!-- 検索バー＆チェック進捗 -->
+      <div class="mt-3 flex flex-col sm:flex-row gap-2">
+        <div class="relative flex-1">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="キャラ名・名前・X IDで検索..."
+            class="w-full pl-9 pr-9 py-2 rounded-xl bg-slate-800/90 border border-slate-700 text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition"
+          />
+          <button id="clear-search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between sm:justify-end gap-2 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700 text-xs">
+          <span class="text-slate-300">
+            <i class="fa-solid fa-check-double text-emerald-400 mr-1"></i>チェック済: <strong id="checked-counter" class="text-white">0</strong> / <span id="total-counter">0</span>
+          </span>
+          <button id="reset-checks" class="text-slate-400 hover:text-rose-400 underline ml-2 transition" title="チェックをすべてリセット">
+            リセット
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- カテゴリータブ（横スクロール対応） -->
+    <div class="bg-slate-800/60 border-t border-slate-700/80">
+      <div id="category-tabs" class="max-w-5xl mx-auto px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <!-- JSで動的生成 -->
+      </div>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-5xl mx-auto px-4 pt-4">
+    <!-- 注記バー -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 mb-5 flex flex-wrap items-center justify-between gap-2 text-xs text-amber-900">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-200 text-amber-800 font-bold">★</span>
+        <span>男性レイヤーさんには名前の前に <strong>★</strong> をつけています。</span>
+      </div>
+      <div class="text-amber-700/90">
+        <i class="fa-regular fa-square-check mr-1"></i>カード右上の丸をタップで合流・撮影済チェックが可能（自動保存）
+      </div>
+    </div>
+
+    <!-- 検索結果ゼロ時の表示 -->
+    <div id="empty-state" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-sm">
+      <div class="text-4xl text-slate-300 mb-3">
+        <i class="fa-solid fa-ghost"></i>
+      </div>
+      <p class="text-slate-600 font-bold">該当する参加者が見つかりませんでした</p>
+      <p class="text-xs text-slate-400 mt-1">別のキーワードやカテゴリーをお試しください</p>
+    </div>
+
+    <!-- セクション一覧コンテナ -->
+    <div id="list-container" class="space-y-8">
+      <!-- JSで動的レンダリング -->
+    </div>
+  </main>
+
+  <!-- リセット確認用カスタムモーダル（alert/confirm不使用） -->
+  <div id="confirm-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-xl border border-slate-100">
+      <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
+        チェック状態をリセットしますか？
+      </h3>
+      <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+        保存されているすべての「合流・撮影済みチェック」が解除されます。この操作は取り消せません。
+      </p>
+      <div class="mt-5 flex justify-end gap-2">
+        <button id="modal-cancel" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+          キャンセル
+        </button>
+        <button id="modal-confirm" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-rose-500 hover:bg-rose-600 transition">
+          リセットする
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- トースト通知 -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
+    IDをコピーしました
+  </div>
+
+  <script>
+    // ==========================================
+    // 参加者・スタッフ データ定義
+    // ==========================================
+    const EVENT_DATA = [
+      {
+        id: 'kanto',
+        title: 'カントー地方',
+        type: 'cosplayer',
+        badgeColor: 'bg-red-500 text-white',
+        borderColor: 'border-red-200',
+        accentBg: 'bg-red-50',
+        members: [
+          { chara: 'タケシ', name: '★ゆぼ', xId: 'yubobobo0315' },
+          { chara: 'カスミ', name: '栗原もみじ', xId: 'momiji3_3' },
+          { chara: 'エリカ', name: 'あいこ', xId: 'aikonocosu' }
+        ]
+      },
+      {
+        id: 'johto',
+        title: 'ジョウト地方',
+        type: 'cosplayer',
+        badgeColor: 'bg-amber-500 text-white',
+        borderColor: 'border-amber-200',
+        accentBg: 'bg-amber-50',
+        members: [
+          { chara: 'イブキ', name: '黒光あんこ', xId: 'mochimochi_32' },
+          { chara: 'ウツギ', name: '相楽たつき', xId: 'Tatsukisagara' }
+        ]
+      },
+      {
+        id: 'hoenn',
+        title: 'ホウエン地方',
+        type: 'cosplayer',
+        badgeColor: 'bg-emerald-600 text-white',
+        borderColor: 'border-emerald-200',
+        accentBg: 'bg-emerald-50',
+        members: [
+          { chara: 'ハルカ', name: '味玉ぽん酢', xId: 'torikawaponzu03' },
+          { chara: 'ダイゴ', name: '★馨', xId: 'Kaoru_ooi' },
+          { chara: 'リラ', name: 'つくも', xId: 'tkmsn3kcn' },
+          { chara: 'ミクリ', name: '★ハス太', xId: 'hasuta8020' }
+        ]
+      },
+      {
+        id: 'sinnoh',
+        title: 'シンオウ地方',
+        type: 'cosplayer',
+        badgeColor: 'bg-indigo-600 text-white',
+        borderColor: 'border-indigo-200',
+        accentBg: 'bg-indigo-50',
+        members: [
+          { chara: 'シロナ', name: 'SHIAr', xId: 'SHIA122930' },
+          { chara: 'ヒカリ', name: '櫻井', xId: 'sakurai_game' },
+          { chara: 'ジュピター', name: 'ぱるめ', xId: 'suiseill' }
+        ]
+      },
+      {
+        id: 'unova',
+        title: 'イッシュ地方',
+        type: 'cosplayer',
+        badgeColor: 'bg-slate-700 text-white',
+        borderColor: 'border-slate-300',
+        accentBg: 'bg-slate-100',
+        members: [
+          { chara: 'カミツレ', name: '李櫻', xId: 'lo_cos_' },
+          { chara: 'カトレア', name: 'ゆめ', xId: 'yume_motunabe' },
+          { chara: 'N', name: '★あうゆ', xId: 'delete110119' },
+          { chara: 'チェレン', name: '白米ひなつ', xId: 'hina_2san' },
+          { chara: 'ベル', name: 'へち', xId: 'HECHI_iroiro' },
+          { chara: 'アデク', name: '小景', xId: 'cocage_tokage' },
+          { chara: 'アーティ', name: '月詠ありす', xId: 'Alicevioletta82' },
+          { chara: 'トウヤ', name: '彩倖', xId: 'sayu_bnal' },
+          { chara: 'フウロ', name: '星宮ナナオ', xId: 'H0sh1m1ya_nana2' },
+          { chara: 'ホミカ', name: '★なお', xId: 'N_Ti_Coo_' }
+        ]
+      },
+      {
+        id: 'kalos',
+        title: 'カロス地方',
+        type: 'cosplayer',
+        badgeColor: 'bg-blue-600 text-white',
+        borderColor: 'border-blue-200',
+        accentBg: 'bg-blue-50',
+        members: [
+          { chara: 'ハルジオ', name: 'チェリねえ', xId: 'cheri_424' },
+          { chara: 'カラスバ', name: '黒守ねお', xId: 'Luxaky920' },
+          { chara: 'マチエール', name: '色鳥彩', xId: 'aya_cos0' },
+          { chara: 'タウニー', name: '★花音', xId: 'kanon_cogimyu' },
+          { chara: 'シロー', name: '★るや', xId: 'ruya_ka' },
+          { chara: 'ムク', name: '紫憂', xId: 'Shiucos' },
+          { chara: 'セイカ', name: 'ウッキー', xId: 'NIGHT_UKKI' },
+          { chara: 'ジプソ', name: '★リナキ', xId: 'rinaki777' },
+          { chara: 'グリ', name: 'ゆうと', xId: '_y_u_t_o_' },
+          { chara: 'マーシュ', name: 'シュウラ', xId: 'kinha0817shura' },
+          { chara: 'カルネ', name: 'ペコ', xId: 'peco_cosphoto' },
+          { chara: 'デウロ', name: 'かに', xId: '_kani_kaniko' },
+          { chara: 'セレナ', name: 'りつた', xId: 'ricchan_ne' },
+          { chara: 'カルム', name: '★まもる', xId: 'mamoru_seaside' },
+          { chara: 'ユカリ', name: 'りりほん', xId: 'ririhon_sub' },
+          { chara: 'フラダリ', name: '★コスあき', xId: 'layer_from_may' },
+          { chara: 'カナリィ', name: 'ないり', xId: 'nairiqz' }
+        ]
+      },
+      {
+        id: 'alola',
+        title: 'アローラ地方',
+        type: 'cosplayer',
+        badgeColor: 'bg-orange-500 text-white',
+        borderColor: 'border-orange-200',
+        accentBg: 'bg-orange-50',
+        members: [
+          { chara: 'アセロラ', name: 'けーでぃー', xId: 'aossskd' },
+          { chara: 'リーリエ', name: '白髪ろり', xId: '_Lolita_46' },
+          { chara: 'グラジオ', name: 'てんくん', xId: 'tenkn_sh' },
+          { chara: 'ミズキ', name: '★むぎ', xId: 'mugita_nashi' },
+          { chara: 'グズマ', name: 'しゅのこ', xId: 'shunoko_SAO_cos' },
+          { chara: 'スイレン', name: 'きょーすけ', xId: 'Evan_UTxTU' }
+        ]
+      },
+      {
+        id: 'galar',
+        title: 'ガラル地方',
+        type: 'cosplayer',
+        badgeColor: 'bg-rose-600 text-white',
+        borderColor: 'border-rose-200',
+        accentBg: 'bg-rose-50',
+        members: [
+          { chara: 'メロン', name: 'MAITO', xId: 'Kuroko_c' },
+          { chara: 'マリィ', name: 'DIMM', xId: 'dimmRadio_0222' },
+          { chara: 'オリーヴ', name: 'もんじゃわ', xId: 'monjawa_cos' },
+          { chara: 'クララ', name: 'ぬえ山ぬえっちゃ', xId: 'nuenue249' },
+          { chara: 'ユウリ', name: '菜の花', xId: 'nanokan_cos' },
+          { chara: 'キバナ', name: '★ARI/ケバブ兄さん', xId: 'Kebavnissan' },
+          { chara: 'ダンデ', name: 'ゆーり', xId: 'yuli_nkym' },
+          { chara: 'ホップ', name: 'アカバネ', xId: 'akabane0224' },
+          { chara: 'マクワ', name: '荒城 紅', xId: 'JumpingLine' },
+          { chara: 'ビート', name: '生ハムメロンパン', xId: 'nama_cos' },
+          { chara: 'ソニア', name: 'あまぎ', xId: 'amatyami55' }
+        ]
+      },
+      {
+        id: 'paldea',
+        title: 'パルデア地方',
+        type: 'cosplayer',
+        badgeColor: 'bg-purple-600 text-white',
+        borderColor: 'border-purple-200',
+        accentBg: 'bg-purple-50',
+        members: [
+          { chara: 'ペパー', name: 'ちあき', xId: 'chiaki_gameplay' },
+          { chara: 'チリ', name: 'なるめ', xId: 'hiratakedarake' },
+          { chara: 'ナンジャモ', name: '静波なな', xId: '427_nanana' },
+          { chara: 'ボタン', name: 'ほしみ', xId: 'zghw2' },
+          { chara: 'スグリ', name: 'らんが', xId: 'rannga0830' },
+          { chara: 'スター団したっぱ', name: '★りょーやん', xId: 'mohumohuhumuhum' },
+          { chara: 'カキツバタ', name: '★さいとー', xId: 'mystic_thunder_' },
+          { chara: 'グルーシャ', name: 'Seeyou(しゆ)', xId: 'seeyou_peanut' },
+          { chara: 'タロ', name: 'pearl', xId: 'llppp_e2a_r11' },
+          { chara: 'アオキ', name: '★社畜さん', xId: 'cquall_cos' },
+          { chara: 'ハイダイ', name: '★パッチ先生', xId: 'pachincoscos' },
+          { chara: 'ジニア', name: '★ユーガ', xId: 'yuga46497' },
+          { chara: 'ライム', name: '月吉凛', xId: 'tuki_yosi_' }
+        ]
+      },
+      {
+        id: 'hisui',
+        title: 'ヒスイ地方',
+        type: 'cosplayer',
+        badgeColor: 'bg-teal-700 text-white',
+        borderColor: 'border-teal-200',
+        accentBg: 'bg-teal-50',
+        members: [
+          { chara: 'ショウ', name: 'ネむ', xId: 'munyamunyacat' },
+          { chara: 'ウォロ', name: '★Yuuki:7', xId: 'yuuki_s0817' }
+        ]
+      },
+      {
+        id: 'anipoke',
+        title: 'アニポケ',
+        type: 'cosplayer',
+        badgeColor: 'bg-sky-500 text-white',
+        borderColor: 'border-sky-200',
+        accentBg: 'bg-sky-50',
+        members: [
+          { chara: 'サンゴ', name: '縞咲無月', xId: 'Panda0nin0' },
+          { chara: 'サトシ', name: '★さぶれ', xId: 'sabure_hope' },
+          { chara: 'コジロウ', name: 'あきくん', xId: 'halakitto' }
+        ]
+      },
+      {
+        id: 'camera',
+        title: 'カメラマン',
+        type: 'camera',
+        badgeColor: 'bg-cyan-700 text-white',
+        borderColor: 'border-cyan-200',
+        accentBg: 'bg-cyan-50',
+        members: [
+          { chara: 'CAMERA', name: 'たかし', xId: 'taka67380' },
+          { chara: 'CAMERA', name: 'へいみん', xId: 'heimin36111' },
+          { chara: 'CAMERA', name: '魑皇鬼', xId: 'brabhamBT46B' },
+          { chara: 'CAMERA', name: 'めろた', xId: 'Melon_S105' },
+          { chara: 'CAMERA', name: 'とーべん', xId: 'toben_cam' },
+          { chara: 'CAMERA', name: 'かみす', xId: 'Training_YG' },
+          { chara: 'CAMERA', name: 'サトシ', xId: 'satoshi0312pedi' },
+          { chara: 'CAMERA', name: '煌榮フレア', xId: 'flare_nico' },
+          { chara: 'CAMERA', name: '夕景', xId: 'uke_vol' },
+          { chara: 'CAMERA', name: 'あだ', xId: 'photogrope360' },
+          { chara: 'CAMERA', name: '小馬谷優介', xId: 'NavelFilm' },
+          { chara: 'CAMERA', name: 'みかん先生', xId: 'mikan_box' }
+        ]
+      },
+      {
+        id: 'assistant',
+        title: 'アシスタント',
+        type: 'assistant',
+        badgeColor: 'bg-emerald-700 text-white',
+        borderColor: 'border-emerald-200',
+        accentBg: 'bg-emerald-50',
+        members: [
+          { chara: 'STAFF', name: 'しゃおき', xId: 'shpho_ot' },
+          { chara: 'STAFF', name: 'アリーヤMAXガムテ', xId: 'defghijklmno987' },
+          { chara: 'STAFF', name: 'NKMN', xId: 'FxerB' },
+          { chara: 'STAFF', name: 'まこっち', xId: 'T_M0220CAMERA' }
+        ]
+      }
+    ];
+
+    // ==========================================
+    // 状態管理 & 初期化
+    // ==========================================
+    const STORAGE_KEY = 'pokemon_cosplay_checked_v1';
+    let checkedSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    // ユニークID生成ヘルパー
+    function getMemberKey(sectionId, member, index) {
+      return `${sectionId}_${member.chara}_${member.xId}_${index}`;
+    }
+
+    // 合計人数カウントと初期表示更新
+    function updateSummaryCounts() {
+      let cosCount = 0;
+      let camCount = 0;
+      let assCount = 0;
+
+      EVENT_DATA.forEach(sec => {
+        if (sec.type === 'cosplayer') cosCount += sec.members.length;
+        if (sec.type === 'camera') camCount += sec.members.length;
+        if (sec.type === 'assistant') assCount += sec.members.length;
+      });
+
+      const total = cosCount + camCount + assCount;
+      document.getElementById('count-cosplayer').textContent = cosCount;
+      document.getElementById('count-camera').textContent = camCount;
+      document.getElementById('count-assistant').textContent = assCount;
+      document.getElementById('total-counter').textContent = total;
+      document.getElementById('checked-counter').textContent = checkedSet.size;
+    }
+
+    // カテゴリータブの描画
+    function renderTabs() {
+      const tabsContainer = document.getElementById('category-tabs');
+      const allTabs = [
+        { id: 'all', label: 'すべて' },
+        ...EVENT_DATA.map(sec => ({ id: sec.id, label: sec.title.replace('地方', '') }))
+      ];
+
+      tabsContainer.innerHTML = allTabs.map(tab => {
+        const isActive = activeCategory === tab.id;
+        return `
+          <button
+            data-tab="${tab.id}"
+            class="tab-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-bold transition ${
+              isActive
+                ? 'bg-amber-400 text-slate-900 shadow-sm'
+                : 'bg-slate-700/70 text-slate-200 hover:bg-slate-600'
+            }"
+          >
+            ${tab.label}
+          </button>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeCategory = btn.dataset.tab;
+          renderTabs();
+          renderList();
+        });
+      });
+    }
+
+    // クリップボードコピー（execCommand使用）
+    function copyTextToClipboard(text) {
+      const tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast(`@${text} をコピーしました`);
+      } catch (e) {
+        console.error('Copy failed', e);
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    // トースト通知
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2000);
+    }
+
+    // チェック状態の切り替え
+    function toggleCheck(key) {
+      if (checkedSet.has(key)) {
+        checkedSet.delete(key);
+      } else {
+        checkedSet.add(key);
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...checkedSet]));
+      document.getElementById('checked-counter').textContent = checkedSet.size;
+      renderList();
+    }
+
+    // メインリストの描画
+    function renderList() {
+      const container = document.getElementById('list-container');
+      const emptyState = document.getElementById('empty-state');
+      const q = searchQuery.trim().toLowerCase();
+
+      let totalVisibleSections = 0;
+
+      const html = EVENT_DATA.map(section => {
+        if (activeCategory !== 'all' && activeCategory !== section.id) {
+          return '';
+        }
+
+        // 検索フィルタリング
+        const filteredMembers = section.members
+          .map((m, idx) => ({ ...m, originalIndex: idx }))
+          .filter(m => {
+            if (!q) return true;
+            return (
+              m.chara.toLowerCase().includes(q) ||
+              m.name.toLowerCase().includes(q) ||
+              m.xId.toLowerCase().includes(q) ||
+              section.title.toLowerCase().includes(q)
+            );
+          });
+
+        if (filteredMembers.length === 0) return '';
+        totalVisibleSections++;
+
+        const cardsHtml = filteredMembers.map(member => {
+          const memberKey = getMemberKey(section.id, member, member.originalIndex);
+          const isChecked = checkedSet.has(memberKey);
+          const cleanId = member.xId.replace(/^@/, '');
+          const isMaleLayer = member.name.startsWith('★');
+
+          // キャラ表示バッジ（スタッフ/カメラの場合はアイコン表示）
+          let roleBadge = '';
+          if (section.type === 'camera') {
+            roleBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-cyan-100 text-cyan-800"><i class="fa-solid fa-camera"></i> カメラマン</span>`;
+          } else if (section.type === 'assistant') {
+            roleBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800"><i class="fa-solid fa-headset"></i> アシスタント</span>`;
+          } else {
+            roleBadge = `<span class="inline-block text-xs font-extrabold px-2.5 py-0.5 rounded-md ${section.accentBg} text-slate-800 border ${section.borderColor}">${member.chara}</span>`;
+          }
+
+          return `
+            <div class="relative bg-white rounded-2xl border ${isChecked ? 'card-checked' : 'border-slate-200/90'} p-3.5 shadow-xs hover:shadow-md transition flex flex-col justify-between gap-2.5">
+              <!-- 上段：キャラ名 & チェックボタン -->
+              <div class="flex items-start justify-between gap-2">
+                <div class="flex flex-wrap items-center gap-1.5">
+                  ${roleBadge}
+                  ${isMaleLayer ? '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">★男性</span>' : ''}
+                </div>
+
+                <button
+                  onclick="toggleCheck('${memberKey}')"
+                  aria-label="合流・撮影チェック"
+                  class="w-7 h-7 rounded-full flex items-center justify-center border transition shrink-0 ${
+                    isChecked
+                      ? 'bg-emerald-500 border-emerald-500 text-white shadow-xs'
+                      : 'bg-slate-50 border-slate-300 text-slate-300 hover:border-emerald-400 hover:text-emerald-400'
+                  }"
+                >
+                  <i class="fa-solid fa-check text-xs"></i>
+                </button>
+              </div>
+
+              <!-- 中段：参加者名 -->
+              <div>
+                <div class="text-base font-bold text-slate-900 leading-snug ${isChecked ? 'line-through text-slate-500' : ''}">
+                  ${member.name}
+                </div>
+              </div>
+
+              <!-- 下段：X (Twitter) リンク & IDコピー -->
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+                <a
+                  href="https://x.com/${encodeURIComponent(cleanId)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-slate-600 hover:text-sky-600 truncate transition"
+                >
+                  <i class="fa-brands fa-x-twitter text-slate-800"></i>
+                  <span class="truncate">@${cleanId}</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
+                </a>
+
+                <button
+                  onclick="copyTextToClipboard('${cleanId}')"
+                  class="text-[11px] text-slate-400 hover:text-slate-700 px-2 py-1 rounded-lg hover:bg-slate-100 transition shrink-0"
+                  title="IDをコピー"
+                >
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <section class="scroll-mt-36">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2.5">
+                <span class="px-3 py-1 rounded-full text-xs font-black tracking-wide shadow-xs ${section.badgeColor}">
+                  ${section.title}
+                </span>
+                <span class="text-xs font-bold text-slate-500">
+                  ${filteredMembers.length}名
+                </span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              ${cardsHtml}
+            </div>
+          </section>
+        `;
+      }).join('');
+
+      if (totalVisibleSections === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+        container.innerHTML = html;
+      }
+    }
+
+    // ==========================================
+    // イベントリスナー登録
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      updateSummaryCounts();
+      renderTabs();
+      renderList();
+
+      const searchInput = document.getElementById('search-input');
+      const clearBtn = document.getElementById('clear-search');
+
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        clearBtn.classList.toggle('hidden', searchQuery.length === 0);
+        renderList();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        searchQuery = '';
+        searchInput.value = '';
+        clearBtn.classList.add('hidden');
+        renderList();
+      });
+
+      // リセットモーダル制御
+      const modal = document.getElementById('confirm-modal');
+      document.getElementById('reset-checks').addEventListener('click', () => {
+        if (checkedSet.size === 0) {
+          showToast('チェック済みの項目はありません');
+          return;
+        }
+        modal.classList.remove('hidden');
+      });
+
+      document.getElementById('modal-cancel').addEventListener('click', () => {
+        modal.classList.add('hidden');
+      });
+
+      document.getElementById('modal-confirm').addEventListener('click', () => {
+        checkedSet.clear();
+        localStorage.removeItem(STORAGE_KEY);
+        document.getElementById('checked-counter').textContent = '0';
+        modal.classList.add('hidden');
+        renderList();
+        showToast('チェックをリセットしました');
+      });
+    });
+  </script>
+</body>
+</html>
