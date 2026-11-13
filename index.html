@@ -233,7 +233,7 @@
         borderColor: 'border-amber-200',
         accentBg: 'bg-amber-50',
         members: [
-          { chara: 'イブキ', name: '黒光あんこ', xId: 'mochimochi_32' },
+          { chara: 'イブキ', name: '黒光あんこ', xId: 'mochimochi__32' },
           { chara: 'ウツギ', name: '相楽たつき', xId: 'Tatsukisagara' }
         ]
       },
@@ -434,7 +434,6 @@
       }
     ];
 
-    // タイムテーブル用：名前の表記ゆれを完全に吸収するマップ
     const memberMap = {};
     EVENT_DATA.forEach(sec => {
       sec.members.forEach(m => {
@@ -445,7 +444,6 @@
       });
     });
 
-    // タイムテーブル上の表記ゆれ対応の個別マッピング
     const timetableNameFix = {
       'seeyou': 'Seeyou(しゆ)',
       'しある': 'SHIAr',
@@ -498,7 +496,6 @@
             return;
           }
 
-          // 表記ゆれ辞書があれば変換、なければそのまま
           const lookupKey = timetableNameFix[rawName.toLowerCase()] || rawName;
           let member = memberMap[lookupKey] || memberMap[rawName] || memberMap[rawName.toLowerCase()];
 
