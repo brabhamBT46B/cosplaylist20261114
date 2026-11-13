@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ポケモン大型併せ 参加者・スタッフ一覧</title>
+  <title>ポケモン大型併せ 参加者・スタッフ一覧 ＆ タイムテーブル</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Inter & Noto Sans JP -->
@@ -25,7 +25,6 @@
     }
   </script>
   <style>
-    /* カスタムスクロールバー（横スクロールタブ用） */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -55,9 +54,9 @@
             <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-red-500 text-white text-xs font-bold shadow">
               <i class="fa-solid fa-record-vinyl"></i>
             </span>
-            <h1 class="text-lg sm:text-xl font-black tracking-tight">POKEMON COSPLAY LIST</h1>
+            <h1 class="text-lg sm:text-xl font-black tracking-tight">POKEMON COSPLAY EVENT</h1>
           </div>
-          <p class="text-xs text-slate-300 mt-0.5">参加者・キャラ・カメラマン・アシスタント一覧</p>
+          <p class="text-xs text-slate-300 mt-0.5">参加者一覧 ＆ タイムテーブル</p>
         </div>
 
         <!-- 統計バッジ -->
@@ -74,8 +73,18 @@
         </div>
       </div>
 
+      <!-- ページ切り替えタブ -->
+      <div class="mt-3 flex items-center gap-2 border-b border-slate-700/80 pb-2">
+        <button id="nav-list-btn" onclick="switchPage('list')" class="px-4 py-1.5 rounded-xl text-xs font-bold transition bg-amber-400 text-slate-900 shadow-sm">
+          <i class="fa-solid fa-users mr-1"></i> 参加者・スタッフ一覧
+        </button>
+        <button id="nav-time-btn" onclick="switchPage('timetable')" class="px-4 py-1.5 rounded-xl text-xs font-bold transition bg-slate-800 text-slate-300 hover:bg-slate-700">
+          <i class="fa-solid fa-clock mr-1"></i> タイムテーブル
+        </button>
+      </div>
+
       <!-- 検索バー＆チェック進捗 -->
-      <div class="mt-3 flex flex-col sm:flex-row gap-2">
+      <div id="list-controls" class="mt-3 flex flex-col sm:flex-row gap-2">
         <div class="relative flex-1">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
           <input
@@ -100,8 +109,8 @@
       </div>
     </div>
 
-    <!-- カテゴリータブ（横スクロール対応） -->
-    <div class="bg-slate-800/60 border-t border-slate-700/80">
+    <!-- 地方カテゴリータブ -->
+    <div id="category-tabs-wrapper" class="bg-slate-800/60 border-t border-slate-700/80">
       <div id="category-tabs" class="max-w-5xl mx-auto px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
         <!-- JSで動的生成 -->
       </div>
@@ -110,29 +119,182 @@
 
   <!-- メインコンテンツ -->
   <main class="max-w-5xl mx-auto px-4 pt-4">
-    <!-- 注記バー -->
-    <div class="bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 mb-5 flex flex-wrap items-center justify-between gap-2 text-xs text-amber-900">
-      <div class="flex items-center gap-2">
-        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-200 text-amber-800 font-bold">★</span>
-        <span>男性レイヤーさんには名前の前に <strong>★</strong> をつけています。</span>
+
+    <!-- 【ページ1】参加者リストビュー -->
+    <div id="view-list" class="space-y-4">
+      <div class="bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 mb-5 flex flex-wrap items-center justify-between gap-2 text-xs text-amber-900">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-200 text-amber-800 font-bold">★</span>
+          <span>男性レイヤーさんには名前の前に <strong>★</strong> をつけています。</span>
+        </div>
+        <div class="text-amber-700/90">
+          <i class="fa-regular fa-square-check mr-1"></i>カード右上の丸をタップで合流・撮影済チェックが可能（自動保存）
+        </div>
       </div>
-      <div class="text-amber-700/90">
-        <i class="fa-regular fa-square-check mr-1"></i>カード右上の丸をタップで合流・撮影済チェックが可能（自動保存）
+
+      <div id="empty-state" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-sm">
+        <div class="text-4xl text-slate-300 mb-3">
+          <i class="fa-solid fa-ghost"></i>
+        </div>
+        <p class="text-slate-600 font-bold">該当する参加者が見つかりませんでした</p>
+        <p class="text-xs text-slate-400 mt-1">別のキーワードやカテゴリーをお試しください</p>
+      </div>
+
+      <div id="list-container" class="space-y-8">
+        <!-- JSで動的レンダリング -->
       </div>
     </div>
 
-    <!-- 検索結果ゼロ時の表示 -->
-    <div id="empty-state" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-sm">
-      <div class="text-4xl text-slate-300 mb-3">
-        <i class="fa-solid fa-ghost"></i>
-      </div>
-      <p class="text-slate-600 font-bold">該当する参加者が見つかりませんでした</p>
-      <p class="text-xs text-slate-400 mt-1">別のキーワードやカテゴリーをお試しください</p>
-    </div>
+    <!-- 【ページ2】タイムテーブルビュー -->
+    <div id="view-timetable" class="hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-base font-black text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-calendar-days text-amber-500"></i>
+            撮影タイムテーブル
+          </h2>
+          <span class="text-xs text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg">横スクロールでカメラマン別を確認できます</span>
+        </div>
 
-    <!-- セクション一覧コンテナ -->
-    <div id="list-container" class="space-y-8">
-      <!-- JSで動적レンダリング -->
+        <div class="overflow-x-auto border border-slate-200 rounded-xl">
+          <table class="w-full text-xs text-left border-collapse min-w-[900px]">
+            <thead>
+              <tr class="bg-slate-900 text-white text-center font-bold">
+                <th class="p-2.5 border-r border-slate-700 w-16 sticky left-0 bg-slate-900 z-10">時間</th>
+                <th class="p-2.5 border-r border-slate-700">たかし</th>
+                <th class="p-2.5 border-r border-slate-700">へいみん</th>
+                <th class="p-2.5 border-r border-slate-700">魑皇鬼</th>
+                <th class="p-2.5 border-r border-slate-700">めろた</th>
+                <th class="p-2.5 border-r border-slate-700">とーべん</th>
+                <th class="p-2.5 border-r border-slate-700">かみす</th>
+                <th class="p-2.5 border-r border-slate-700">サトシ</th>
+                <th class="p-2.5 border-r border-slate-700">煌榮フレア</th>
+                <th class="p-2.5 border-r border-slate-700">夕景</th>
+                <th class="p-2.5 border-r border-slate-700">あだ</th>
+                <th class="p-2.5 border-r border-slate-700">小馬谷優介</th>
+                <th class="p-2.5">みかん先生</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-center">
+              <tr>
+                <td class="p-2.5 font-bold bg-slate-50 border-r border-slate-200 sticky left-0 z-10">11:15</td>
+                <td class="p-2.5 bg-amber-50/50">ネむ</td>
+                <td class="p-2.5">花音</td>
+                <td class="p-2.5 bg-amber-50/50">seeyou</td>
+                <td class="p-2.5">あいこ</td>
+                <td class="p-2.5 bg-amber-50/50">かに</td>
+                <td class="p-2.5">リナキ</td>
+                <td class="p-2.5 bg-amber-50/50">しある</td>
+                <td class="p-2.5">シュウラ</td>
+                <td class="p-2.5 bg-amber-50/50">ちあき</td>
+                <td class="p-2.5">ゆぼ</td>
+                <td class="p-2.5 bg-amber-50/50">馨</td>
+                <td class="p-2.5">るや</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold bg-slate-50 border-r border-slate-200 sticky left-0 z-10">11:30</td>
+                <td class="p-2.5">櫻井</td>
+                <td class="p-2.5 bg-amber-50/50">生ハム</td>
+                <td class="p-2.5">さぶれ</td>
+                <td class="p-2.5 bg-amber-50/50">パッチ先生</td>
+                <td class="p-2.5">彩倖</td>
+                <td class="p-2.5 bg-amber-50/50">あまぎ</td>
+                <td class="p-2.5">けーでぃー</td>
+                <td class="p-2.5 bg-amber-50/50">社畜さん</td>
+                <td class="p-2.5">菜の花</td>
+                <td class="p-2.5 bg-amber-50/50">アカバネ</td>
+                <td class="p-2.5">もんじゃわ</td>
+                <td class="p-2.5 bg-amber-50/50">へち</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold bg-slate-50 border-r border-slate-200 sticky left-0 z-10">11:45</td>
+                <td class="p-2.5 bg-amber-50/50">ウッキー</td>
+                <td class="p-2.5">小景</td>
+                <td class="p-2.5 bg-amber-50/50">栗原もみじ</td>
+                <td class="p-2.5">紫憂</td>
+                <td class="p-2.5 bg-amber-50/50">白米ひなつ</td>
+                <td class="p-2.5">ぱるめ</td>
+                <td class="p-2.5 bg-amber-50/50">相楽たつき</td>
+                <td class="p-2.5">Pearl</td>
+                <td class="p-2.5 bg-amber-50/50">縞咲無月</td>
+                <td class="p-2.5">らんが</td>
+                <td class="p-2.5 bg-amber-50/50">ぬえ山ぬえっちゃ</td>
+                <td class="p-2.5">荒城紅</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold bg-slate-50 border-r border-slate-200 sticky left-0 z-10">12:00</td>
+                <td class="p-2.5">チェリ</td>
+                <td class="p-2.5 bg-amber-50/50">Peco</td>
+                <td class="p-2.5">むぎ</td>
+                <td class="p-2.5 bg-amber-50/50">白髪ろり</td>
+                <td class="p-2.5">てんくん</td>
+                <td class="p-2.5 bg-amber-50/50">李櫻</td>
+                <td class="p-2.5">静波なな</td>
+                <td class="p-2.5 bg-amber-50/50">月詠ありす</td>
+                <td class="p-2.5">味玉ぽん酢</td>
+                <td class="p-2.5 bg-amber-50/50">つくも</td>
+                <td class="p-2.5">なるめ</td>
+                <td class="p-2.5 bg-amber-50/50">ほしみ</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold bg-slate-50 border-r border-slate-200 sticky left-0 z-10">12:15</td>
+                <td class="p-2.5 bg-amber-50/50">星宮ナナオ</td>
+                <td class="p-2.5">黒守ねお</td>
+                <td class="p-2.5 bg-amber-50/50">りりほん</td>
+                <td class="p-2.5">りつた</td>
+                <td class="p-2.5 bg-amber-50/50">さいとー</td>
+                <td class="p-2.5">ハス太</td>
+                <td class="p-2.5 bg-amber-50/50">あうゆ</td>
+                <td class="p-2.5">りょーやん</td>
+                <td class="p-2.5 bg-amber-50/50">コスあき</td>
+                <td class="p-2.5">しゅのこ</td>
+                <td class="p-2.5 bg-amber-50/50">きょーすけ</td>
+                <td class="p-2.5">MAITO</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold bg-slate-50 border-r border-slate-200 sticky left-0 z-10">12:30</td>
+                <td class="p-2.5">ゆーり</td>
+                <td class="p-2.5 bg-amber-50/50">ゆうと</td>
+                <td class="p-2.5">なお</td>
+                <td class="p-2.5 bg-amber-50/50">色鳥彩</td>
+                <td class="p-2.5">ゆめ</td>
+                <td class="p-2.5 bg-amber-50/50">まもる</td>
+                <td class="p-2.5">ユーガ</td>
+                <td class="p-2.5 bg-amber-50/50">ないり</td>
+                <td class="p-2.5">DIMM</td>
+                <td class="p-2.5 bg-amber-50/50">ARI/ケバブ兄さん</td>
+                <td class="p-2.5">あきくん</td>
+                <td class="p-2.5 bg-amber-50/50">Yuuki</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold bg-slate-50 border-r border-slate-200 sticky left-0 z-10">12:45</td>
+                <td class="p-2.5 bg-amber-50/50">月吉凛</td>
+                <td colspan="11" class="bg-slate-50 text-slate-400"></td>
+              </tr>
+              <tr class="bg-rose-50 font-bold text-rose-800">
+                <td class="p-3 border-r border-rose-200 sticky left-0 bg-rose-50 z-10">13:00</td>
+                <td colspan="12" class="p-3 text-center tracking-wider">集合撮影</td>
+              </tr>
+              <tr class="bg-blue-50 font-bold text-blue-800">
+                <td class="p-3 border-r border-blue-200 sticky left-0 bg-blue-50 z-10">14:30</td>
+                <td colspan="12" class="p-3 text-center tracking-wider">休憩</td>
+              </tr>
+              <tr class="bg-emerald-50 font-bold text-emerald-900">
+                <td class="p-3 border-r border-emerald-200 sticky left-0 bg-emerald-50 z-10">14:45〜</td>
+                <td colspan="12" class="p-3 text-center tracking-wider">ペア撮影、グループ撮影、交流タイム</td>
+              </tr>
+              <tr class="bg-slate-100 font-bold text-slate-700">
+                <td class="p-3 border-r border-slate-300 sticky left-0 bg-slate-100 z-10">17:00</td>
+                <td colspan="12" class="p-3 text-center tracking-wider">着替え</td>
+              </tr>
+              <tr class="bg-slate-800 font-bold text-white">
+                <td class="p-3 border-r border-slate-700 sticky left-0 bg-slate-800 z-10">18:00</td>
+                <td colspan="12" class="p-3 text-center tracking-wider">完全撤収</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -390,6 +552,33 @@
     let checkedSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
     let activeCategory = 'all';
     let searchQuery = '';
+    let currentView = 'list';
+
+    function switchPage(page) {
+      currentView = page;
+      const listBtn = document.getElementById('nav-list-btn');
+      const timeBtn = document.getElementById('nav-time-btn');
+      const listView = document.getElementById('view-list');
+      const timeView = document.getElementById('view-timetable');
+      const listControls = document.getElementById('list-controls');
+      const catTabsWrapper = document.getElementById('category-tabs-wrapper');
+
+      if (page === 'list') {
+        listBtn.className = "px-4 py-1.5 rounded-xl text-xs font-bold transition bg-amber-400 text-slate-900 shadow-sm";
+        timeBtn.className = "px-4 py-1.5 rounded-xl text-xs font-bold transition bg-slate-800 text-slate-300 hover:bg-slate-700";
+        listView.classList.remove('hidden');
+        timeView.classList.add('hidden');
+        listControls.classList.remove('hidden');
+        catTabsWrapper.classList.remove('hidden');
+      } else {
+        timeBtn.className = "px-4 py-1.5 rounded-xl text-xs font-bold transition bg-amber-400 text-slate-900 shadow-sm";
+        listBtn.className = "px-4 py-1.5 rounded-xl text-xs font-bold transition bg-slate-800 text-slate-300 hover:bg-slate-700";
+        timeView.classList.remove('hidden');
+        listView.classList.add('hidden');
+        listControls.classList.add('hidden');
+        catTabsWrapper.classList.add('hidden');
+      }
+    }
 
     function getMemberKey(sectionId, member, index) {
       return `${sectionId}_${member.chara}_${member.xId}_${index}`;
@@ -516,6 +705,7 @@
           const isChecked = checkedSet.has(memberKey);
           const cleanId = member.xId.replace(/^@/, '');
           const isMaleLayer = member.name.startsWith('★');
+          const avatarUrl = `https://unavatar.io/twitter/${encodeURIComponent(cleanId)}`;
 
           let roleBadge = '';
           if (section.type === 'camera') {
@@ -560,7 +750,7 @@
                   rel="noopener noreferrer"
                   class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-slate-600 hover:text-sky-600 truncate transition"
                 >
-                  <i class="fa-brands fa-x-twitter text-slate-800"></i>
+                  <img src="${avatarUrl}" alt="" class="w-4 h-4 rounded-full object-cover bg-slate-200 shrink-0" onerror="this.onerror=null; this.src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png';" />
                   <span class="truncate">@${cleanId}</span>
                   <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
                 </a>
