@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ƒ|ƒPƒ‚ƒ“‘åŒ^•¹‚¹ Q‰ÁÒEƒXƒ^ƒbƒtˆê——</title>
+  <title>ãƒã‚±ãƒ¢ãƒ³å¤§å‹ä½µã› å‚åŠ è€…ãƒ»ã‚¹ã‚¿ãƒƒãƒ•ä¸€è¦§</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Inter & Noto Sans JP -->
@@ -25,7 +25,7 @@
     }
   </script>
   <style>
-    /* ƒJƒXƒ^ƒ€ƒXƒNƒ[ƒ‹ƒo[i‰¡ƒXƒNƒ[ƒ‹ƒ^ƒu—pj */
+    /* ã‚«ã‚¹ã‚¿ãƒ ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ï¼ˆæ¨ªã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¿ãƒ–ç”¨ï¼‰ */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -46,7 +46,7 @@
 </head>
 <body class="min-h-screen pb-20">
 
-  <!-- ƒwƒbƒ_[ -->
+  <!-- ãƒ˜ãƒƒãƒ€ãƒ¼ -->
   <header class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white sticky top-0 z-40 shadow-md">
     <div class="max-w-5xl mx-auto px-4 py-4">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
@@ -57,31 +57,31 @@
             </span>
             <h1 class="text-lg sm:text-xl font-black tracking-tight">POKEMON COSPLAY LIST</h1>
           </div>
-          <p class="text-xs text-slate-300 mt-0.5">Q‰ÁÒEƒLƒƒƒ‰EƒJƒƒ‰ƒ}ƒ“EƒAƒVƒXƒ^ƒ“ƒgˆê——</p>
+          <p class="text-xs text-slate-300 mt-0.5">å‚åŠ è€…ãƒ»ã‚­ãƒ£ãƒ©ãƒ»ã‚«ãƒ¡ãƒ©ãƒãƒ³ãƒ»ã‚¢ã‚·ã‚¹ã‚¿ãƒ³ãƒˆä¸€è¦§</p>
         </div>
 
-        <!-- “ŒvƒoƒbƒW -->
+        <!-- çµ±è¨ˆãƒãƒƒã‚¸ -->
         <div class="flex items-center gap-2 text-xs font-bold">
           <span class="bg-white/10 px-2.5 py-1 rounded-full border border-white/15">
-            <i class="fa-solid fa-user-astronaut text-amber-400 mr-1"></i>ƒŒƒCƒ„[ <span id="count-cosplayer">0</span>–¼
+            <i class="fa-solid fa-user-astronaut text-amber-400 mr-1"></i>ãƒ¬ã‚¤ãƒ¤ãƒ¼ <span id="count-cosplayer">0</span>å
           </span>
           <span class="bg-white/10 px-2.5 py-1 rounded-full border border-white/15">
-            <i class="fa-solid fa-camera text-sky-400 mr-1"></i>ƒJƒƒ‰ <span id="count-camera">0</span>–¼
+            <i class="fa-solid fa-camera text-sky-400 mr-1"></i>ã‚«ãƒ¡ãƒ© <span id="count-camera">0</span>å
           </span>
           <span class="bg-white/10 px-2.5 py-1 rounded-full border border-white/15">
-            <i class="fa-solid fa-hands-helping text-emerald-400 mr-1"></i>ƒAƒV <span id="count-assistant">0</span>–¼
+            <i class="fa-solid fa-hands-helping text-emerald-400 mr-1"></i>ã‚¢ã‚· <span id="count-assistant">0</span>å
           </span>
         </div>
       </div>
 
-      <!-- ŒŸõƒo[•ƒ`ƒFƒbƒNi’» -->
+      <!-- æ¤œç´¢ãƒãƒ¼ï¼†ãƒã‚§ãƒƒã‚¯é€²æ— -->
       <div class="mt-3 flex flex-col sm:flex-row gap-2">
         <div class="relative flex-1">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
           <input
             type="text"
             id="search-input"
-            placeholder="ƒLƒƒƒ‰–¼E–¼‘OEX ID‚ÅŒŸõ..."
+            placeholder="ã‚­ãƒ£ãƒ©åãƒ»åå‰ãƒ»X IDã§æ¤œç´¢..."
             class="w-full pl-9 pr-9 py-2 rounded-xl bg-slate-800/90 border border-slate-700 text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition"
           />
           <button id="clear-search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
@@ -91,318 +91,310 @@
 
         <div class="flex items-center justify-between sm:justify-end gap-2 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700 text-xs">
           <span class="text-slate-300">
-            <i class="fa-solid fa-check-double text-emerald-400 mr-1"></i>ƒ`ƒFƒbƒNÏ: <strong id="checked-counter" class="text-white">0</strong> / <span id="total-counter">0</span>
+            <i class="fa-solid fa-check-double text-emerald-400 mr-1"></i>ãƒã‚§ãƒƒã‚¯æ¸ˆ: <strong id="checked-counter" class="text-white">0</strong> / <span id="total-counter">0</span>
           </span>
-          <button id="reset-checks" class="text-slate-400 hover:text-rose-400 underline ml-2 transition" title="ƒ`ƒFƒbƒN‚ğ‚·‚×‚ÄƒŠƒZƒbƒg">
-            ƒŠƒZƒbƒg
+          <button id="reset-checks" class="text-slate-400 hover:text-rose-400 underline ml-2 transition" title="ãƒã‚§ãƒƒã‚¯ã‚’ã™ã¹ã¦ãƒªã‚»ãƒƒãƒˆ">
+            ãƒªã‚»ãƒƒãƒˆ
           </button>
         </div>
       </div>
     </div>
 
-    <!-- ƒJƒeƒSƒŠ[ƒ^ƒui‰¡ƒXƒNƒ[ƒ‹‘Î‰j -->
+    <!-- ã‚«ãƒ†ã‚´ãƒªãƒ¼ã‚¿ãƒ–ï¼ˆæ¨ªã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯¾å¿œï¼‰ -->
     <div class="bg-slate-800/60 border-t border-slate-700/80">
       <div id="category-tabs" class="max-w-5xl mx-auto px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-        <!-- JS‚Å“®“I¶¬ -->
+        <!-- JSã§å‹•çš„ç”Ÿæˆ -->
       </div>
     </div>
   </header>
 
-  <!-- ƒƒCƒ“ƒRƒ“ƒeƒ“ƒc -->
+  <!-- ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ -->
   <main class="max-w-5xl mx-auto px-4 pt-4">
-    <!-- ’‹Lƒo[ -->
+    <!-- æ³¨è¨˜ãƒãƒ¼ -->
     <div class="bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 mb-5 flex flex-wrap items-center justify-between gap-2 text-xs text-amber-900">
       <div class="flex items-center gap-2">
-        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-200 text-amber-800 font-bold">š</span>
-        <span>’j«ƒŒƒCƒ„[‚³‚ñ‚É‚Í–¼‘O‚Ì‘O‚É <strong>š</strong> ‚ğ‚Â‚¯‚Ä‚¢‚Ü‚·B</span>
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-200 text-amber-800 font-bold">â˜…</span>
+        <span>ç”·æ€§ãƒ¬ã‚¤ãƒ¤ãƒ¼ã•ã‚“ã«ã¯åå‰ã®å‰ã« <strong>â˜…</strong> ã‚’ã¤ã‘ã¦ã„ã¾ã™ã€‚</span>
       </div>
       <div class="text-amber-700/90">
-        <i class="fa-regular fa-square-check mr-1"></i>ƒJ[ƒh‰Eã‚ÌŠÛ‚ğƒ^ƒbƒv‚Å‡—¬EB‰eÏƒ`ƒFƒbƒN‚ª‰Â”\i©“®•Û‘¶j
+        <i class="fa-regular fa-square-check mr-1"></i>ã‚«ãƒ¼ãƒ‰å³ä¸Šã®ä¸¸ã‚’ã‚¿ãƒƒãƒ—ã§åˆæµãƒ»æ’®å½±æ¸ˆãƒã‚§ãƒƒã‚¯ãŒå¯èƒ½ï¼ˆè‡ªå‹•ä¿å­˜ï¼‰
       </div>
     </div>
 
-    <!-- ŒŸõŒ‹‰Êƒ[ƒ‚Ì•\¦ -->
+    <!-- æ¤œç´¢çµæœã‚¼ãƒ­æ™‚ã®è¡¨ç¤º -->
     <div id="empty-state" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-sm">
       <div class="text-4xl text-slate-300 mb-3">
         <i class="fa-solid fa-ghost"></i>
       </div>
-      <p class="text-slate-600 font-bold">ŠY“–‚·‚éQ‰ÁÒ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½</p>
-      <p class="text-xs text-slate-400 mt-1">•Ê‚ÌƒL[ƒ[ƒh‚âƒJƒeƒSƒŠ[‚ğ‚¨‚µ‚­‚¾‚³‚¢</p>
+      <p class="text-slate-600 font-bold">è©²å½“ã™ã‚‹å‚åŠ è€…ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ</p>
+      <p class="text-xs text-slate-400 mt-1">åˆ¥ã®ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã‚„ã‚«ãƒ†ã‚´ãƒªãƒ¼ã‚’ãŠè©¦ã—ãã ã•ã„</p>
     </div>
 
-    <!-- ƒZƒNƒVƒ‡ƒ“ˆê——ƒRƒ“ƒeƒi -->
+    <!-- ã‚»ã‚¯ã‚·ãƒ§ãƒ³ä¸€è¦§ã‚³ãƒ³ãƒ†ãƒŠ -->
     <div id="list-container" class="space-y-8">
-      <!-- JS‚Å“®“IƒŒƒ“ƒ_ƒŠƒ“ƒO -->
+      <!-- JSã§å‹•ì ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° -->
     </div>
   </main>
 
-  <!-- ƒŠƒZƒbƒgŠm”F—pƒJƒXƒ^ƒ€ƒ‚[ƒ_ƒ‹ialert/confirm•sg—pj -->
+  <!-- ãƒªã‚»ãƒƒãƒˆç¢ºèªç”¨ã‚«ã‚¹ã‚¿ãƒ ãƒ¢ãƒ¼ãƒ€ãƒ« -->
   <div id="confirm-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-xl border border-slate-100">
       <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
         <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
-        ƒ`ƒFƒbƒNó‘Ô‚ğƒŠƒZƒbƒg‚µ‚Ü‚·‚©H
+        ãƒã‚§ãƒƒã‚¯çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã™ã‹ï¼Ÿ
       </h3>
       <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-        •Û‘¶‚³‚ê‚Ä‚¢‚é‚·‚×‚Ä‚Ìu‡—¬EB‰eÏ‚İƒ`ƒFƒbƒNv‚ª‰ğœ‚³‚ê‚Ü‚·B‚±‚Ì‘€ì‚Íæ‚èÁ‚¹‚Ü‚¹‚ñB
+        ä¿å­˜ã•ã‚Œã¦ã„ã‚‹ã™ã¹ã¦ã®ã€Œåˆæµãƒ»æ’®å½±æ¸ˆã¿ãƒã‚§ãƒƒã‚¯ã€ãŒè§£é™¤ã•ã‚Œã¾ã™ã€‚ã“ã®æ“ä½œã¯å–ã‚Šæ¶ˆã›ã¾ã›ã‚“ã€‚
       </p>
       <div class="mt-5 flex justify-end gap-2">
         <button id="modal-cancel" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
-          ƒLƒƒƒ“ƒZƒ‹
+          ã‚­ãƒ£ãƒ³ã‚»ãƒ«
         </button>
         <button id="modal-confirm" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-rose-500 hover:bg-rose-600 transition">
-          ƒŠƒZƒbƒg‚·‚é
+          ãƒªã‚»ãƒƒãƒˆã™ã‚‹
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ƒg[ƒXƒg’Ê’m -->
+  <!-- ãƒˆãƒ¼ã‚¹ãƒˆé€šçŸ¥ -->
   <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
-    ID‚ğƒRƒs[‚µ‚Ü‚µ‚½
+    IDã‚’ã‚³ãƒ”ãƒ¼ã—ã¾ã—ãŸ
   </div>
 
   <script>
-    // ==========================================
-    // Q‰ÁÒEƒXƒ^ƒbƒt ƒf[ƒ^’è‹`
-    // ==========================================
     const EVENT_DATA = [
       {
         id: 'kanto',
-        title: 'ƒJƒ“ƒg[’n•û',
+        title: 'ã‚«ãƒ³ãƒˆãƒ¼åœ°æ–¹',
         type: 'cosplayer',
         badgeColor: 'bg-red-500 text-white',
         borderColor: 'border-red-200',
         accentBg: 'bg-red-50',
         members: [
-          { chara: 'ƒ^ƒPƒV', name: 'š‚ä‚Ú', xId: 'yubobobo0315' },
-          { chara: 'ƒJƒXƒ~', name: 'ŒIŒ´‚à‚İ‚¶', xId: 'momiji3_3' },
-          { chara: 'ƒGƒŠƒJ', name: '‚ ‚¢‚±', xId: 'aikonocosu' }
+          { chara: 'ã‚¿ã‚±ã‚·', name: 'â˜…ã‚†ã¼', xId: 'yubobobo0315' },
+          { chara: 'ã‚«ã‚¹ãƒŸ', name: 'æ —åŸã‚‚ã¿ã˜', xId: 'momiji3_3' },
+          { chara: 'ã‚¨ãƒªã‚«', name: 'ã‚ã„ã“', xId: 'aikonocosu' }
         ]
       },
       {
         id: 'johto',
-        title: 'ƒWƒ‡ƒEƒg’n•û',
+        title: 'ã‚¸ãƒ§ã‚¦ãƒˆåœ°æ–¹',
         type: 'cosplayer',
         badgeColor: 'bg-amber-500 text-white',
         borderColor: 'border-amber-200',
         accentBg: 'bg-amber-50',
         members: [
-          { chara: 'ƒCƒuƒL', name: '•Œõ‚ ‚ñ‚±', xId: 'mochimochi_32' },
-          { chara: 'ƒEƒcƒM', name: '‘ŠŠy‚½‚Â‚«', xId: 'Tatsukisagara' }
+          { chara: 'ã‚¤ãƒ–ã‚­', name: 'é»’å…‰ã‚ã‚“ã“', xId: 'mochimochi_32' },
+          { chara: 'ã‚¦ãƒ„ã‚®', name: 'ç›¸æ¥½ãŸã¤ã', xId: 'Tatsukisagara' }
         ]
       },
       {
         id: 'hoenn',
-        title: 'ƒzƒEƒGƒ“’n•û',
+        title: 'ãƒ›ã‚¦ã‚¨ãƒ³åœ°æ–¹',
         type: 'cosplayer',
         badgeColor: 'bg-emerald-600 text-white',
         borderColor: 'border-emerald-200',
         accentBg: 'bg-emerald-50',
         members: [
-          { chara: 'ƒnƒ‹ƒJ', name: '–¡‹Ê‚Û‚ñ|', xId: 'torikawaponzu03' },
-          { chara: 'ƒ_ƒCƒS', name: 'šŠ]', xId: 'Kaoru_ooi' },
-          { chara: 'ƒŠƒ‰', name: '‚Â‚­‚à', xId: 'tkmsn3kcn' },
-          { chara: 'ƒ~ƒNƒŠ', name: 'šƒnƒX‘¾', xId: 'hasuta8020' }
+          { chara: 'ãƒãƒ«ã‚«', name: 'å‘³ç‰ã½ã‚“é…¢', xId: 'torikawaponzu03' },
+          { chara: 'ãƒ€ã‚¤ã‚´', name: 'â˜…é¦¨', xId: 'Kaoru_ooi' },
+          { chara: 'ãƒªãƒ©', name: 'ã¤ãã‚‚', xId: 'tkmsn3kcn' },
+          { chara: 'ãƒŸã‚¯ãƒª', name: 'â˜…ãƒã‚¹å¤ª', xId: 'hasuta8020' }
         ]
       },
       {
         id: 'sinnoh',
-        title: 'ƒVƒ“ƒIƒE’n•û',
+        title: 'ã‚·ãƒ³ã‚ªã‚¦åœ°æ–¹',
         type: 'cosplayer',
         badgeColor: 'bg-indigo-600 text-white',
         borderColor: 'border-indigo-200',
         accentBg: 'bg-indigo-50',
         members: [
-          { chara: 'ƒVƒƒi', name: 'SHIAr', xId: 'SHIA122930' },
-          { chara: 'ƒqƒJƒŠ', name: 'ŸNˆä', xId: 'sakurai_game' },
-          { chara: 'ƒWƒ…ƒsƒ^[', name: '‚Ï‚é‚ß', xId: 'suiseill' }
+          { chara: 'ã‚·ãƒ­ãƒŠ', name: 'SHIAr', xId: 'SHIA122930' },
+          { chara: 'ãƒ’ã‚«ãƒª', name: 'æ«»äº•', xId: 'sakurai_game' },
+          { chara: 'ã‚¸ãƒ¥ãƒ”ã‚¿ãƒ¼', name: 'ã±ã‚‹ã‚', xId: 'suiseill' }
         ]
       },
       {
         id: 'unova',
-        title: 'ƒCƒbƒVƒ…’n•û',
+        title: 'ã‚¤ãƒƒã‚·ãƒ¥åœ°æ–¹',
         type: 'cosplayer',
         badgeColor: 'bg-slate-700 text-white',
         borderColor: 'border-slate-300',
         accentBg: 'bg-slate-100',
         members: [
-          { chara: 'ƒJƒ~ƒcƒŒ', name: '—›ŸN', xId: 'lo_cos_' },
-          { chara: 'ƒJƒgƒŒƒA', name: '‚ä‚ß', xId: 'yume_motunabe' },
-          { chara: 'N', name: 'š‚ ‚¤‚ä', xId: 'delete110119' },
-          { chara: 'ƒ`ƒFƒŒƒ“', name: '”’•Ä‚Ğ‚È‚Â', xId: 'hina_2san' },
-          { chara: 'ƒxƒ‹', name: '‚Ö‚¿', xId: 'HECHI_iroiro' },
-          { chara: 'ƒAƒfƒN', name: '¬Œi', xId: 'cocage_tokage' },
-          { chara: 'ƒA[ƒeƒB', name: 'Œ‰r‚ ‚è‚·', xId: 'Alicevioletta82' },
-          { chara: 'ƒgƒEƒ„', name: 'ÊŒô', xId: 'sayu_bnal' },
-          { chara: 'ƒtƒEƒ', name: '¯‹{ƒiƒiƒI', xId: 'H0sh1m1ya_nana2' },
-          { chara: 'ƒzƒ~ƒJ', name: 'š‚È‚¨', xId: 'N_Ti_Coo_' }
+          { chara: 'ã‚«ãƒŸãƒ„ãƒ¬', name: 'ææ«»', xId: 'lo_cos_' },
+          { chara: 'ã‚«ãƒˆãƒ¬ã‚¢', name: 'ã‚†ã‚', xId: 'yume_motunabe' },
+          { chara: 'N', name: 'â˜…ã‚ã†ã‚†', xId: 'delete110119' },
+          { chara: 'ãƒã‚§ãƒ¬ãƒ³', name: 'ç™½ç±³ã²ãªã¤', xId: 'hina_2san' },
+          { chara: 'ãƒ™ãƒ«', name: 'ã¸ã¡', xId: 'HECHI_iroiro' },
+          { chara: 'ã‚¢ãƒ‡ã‚¯', name: 'å°æ™¯', xId: 'cocage_tokage' },
+          { chara: 'ã‚¢ãƒ¼ãƒ†ã‚£', name: 'æœˆè© ã‚ã‚Šã™', xId: 'Alicevioletta82' },
+          { chara: 'ãƒˆã‚¦ãƒ¤', name: 'å½©å€–', xId: 'sayu_bnal' },
+          { chara: 'ãƒ•ã‚¦ãƒ­', name: 'æ˜Ÿå®®ãƒŠãƒŠã‚ª', xId: 'H0sh1m1ya_nana2' },
+          { chara: 'ãƒ›ãƒŸã‚«', name: 'â˜…ãªãŠ', xId: 'N_Ti_Coo_' }
         ]
       },
       {
         id: 'kalos',
-        title: 'ƒJƒƒX’n•û',
+        title: 'ã‚«ãƒ­ã‚¹åœ°æ–¹',
         type: 'cosplayer',
         badgeColor: 'bg-blue-600 text-white',
         borderColor: 'border-blue-200',
         accentBg: 'bg-blue-50',
         members: [
-          { chara: 'ƒnƒ‹ƒWƒI', name: 'ƒ`ƒFƒŠ‚Ë‚¦', xId: 'cheri_424' },
-          { chara: 'ƒJƒ‰ƒXƒo', name: '•ç‚Ë‚¨', xId: 'Luxaky920' },
-          { chara: 'ƒ}ƒ`ƒG[ƒ‹', name: 'F’¹Ê', xId: 'aya_cos0' },
-          { chara: 'ƒ^ƒEƒj[', name: 'š‰Ô‰¹', xId: 'kanon_cogimyu' },
-          { chara: 'ƒVƒ[', name: 'š‚é‚â', xId: 'ruya_ka' },
-          { chara: 'ƒ€ƒN', name: '‡—J', xId: 'Shiucos' },
-          { chara: 'ƒZƒCƒJ', name: 'ƒEƒbƒL[', xId: 'NIGHT_UKKI' },
-          { chara: 'ƒWƒvƒ\', name: 'šƒŠƒiƒL', xId: 'rinaki777' },
-          { chara: 'ƒOƒŠ', name: '‚ä‚¤‚Æ', xId: '_y_u_t_o_' },
-          { chara: 'ƒ}[ƒVƒ…', name: 'ƒVƒ…ƒEƒ‰', xId: 'kinha0817shura' },
-          { chara: 'ƒJƒ‹ƒl', name: 'ƒyƒR', xId: 'peco_cosphoto' },
-          { chara: 'ƒfƒEƒ', name: '‚©‚É', xId: '_kani_kaniko' },
-          { chara: 'ƒZƒŒƒi', name: '‚è‚Â‚½', xId: 'ricchan_ne' },
-          { chara: 'ƒJƒ‹ƒ€', name: 'š‚Ü‚à‚é', xId: 'mamoru_seaside' },
-          { chara: 'ƒ†ƒJƒŠ', name: '‚è‚è‚Ù‚ñ', xId: 'ririhon_sub' },
-          { chara: 'ƒtƒ‰ƒ_ƒŠ', name: 'šƒRƒX‚ ‚«', xId: 'layer_from_may' },
-          { chara: 'ƒJƒiƒŠƒB', name: '‚È‚¢‚è', xId: 'nairiqz' }
+          { chara: 'ãƒãƒ«ã‚¸ã‚ª', name: 'ãƒã‚§ãƒªã­ãˆ', xId: 'cheri_424' },
+          { chara: 'ã‚«ãƒ©ã‚¹ãƒ', name: 'é»’å®ˆã­ãŠ', xId: 'Luxaky920' },
+          { chara: 'ãƒãƒã‚¨ãƒ¼ãƒ«', name: 'è‰²é³¥å½©', xId: 'aya_cos0' },
+          { chara: 'ã‚¿ã‚¦ãƒ‹ãƒ¼', name: 'â˜…èŠ±éŸ³', xId: 'kanon_cogimyu' },
+          { chara: 'ã‚·ãƒ­ãƒ¼', name: 'â˜…ã‚‹ã‚„', xId: 'ruya_ka' },
+          { chara: 'ãƒ ã‚¯', name: 'ç´«æ†‚', xId: 'Shiucos' },
+          { chara: 'ã‚»ã‚¤ã‚«', name: 'ã‚¦ãƒƒã‚­ãƒ¼', xId: 'NIGHT_UKKI' },
+          { chara: 'ã‚¸ãƒ—ã‚½', name: 'â˜…ãƒªãƒŠã‚­', xId: 'rinaki777' },
+          { chara: 'ã‚°ãƒª', name: 'ã‚†ã†ã¨', xId: '_y_u_t_o_' },
+          { chara: 'ãƒãƒ¼ã‚·ãƒ¥', name: 'ã‚·ãƒ¥ã‚¦ãƒ©', xId: 'kinha0817shura' },
+          { chara: 'ã‚«ãƒ«ãƒ', name: 'ãƒšã‚³', xId: 'peco_cosphoto' },
+          { chara: 'ãƒ‡ã‚¦ãƒ­', name: 'ã‹ã«', xId: '_kani_kaniko' },
+          { chara: 'ã‚»ãƒ¬ãƒŠ', name: 'ã‚Šã¤ãŸ', xId: 'ricchan_ne' },
+          { chara: 'ã‚«ãƒ«ãƒ ', name: 'â˜…ã¾ã‚‚ã‚‹', xId: 'mamoru_seaside' },
+          { chara: 'ãƒ¦ã‚«ãƒª', name: 'ã‚Šã‚Šã»ã‚“', xId: 'ririhon_sub' },
+          { chara: 'ãƒ•ãƒ©ãƒ€ãƒª', name: 'â˜…ã‚³ã‚¹ã‚ã', xId: 'layer_from_may' },
+          { chara: 'ã‚«ãƒŠãƒªã‚£', name: 'ãªã„ã‚Š', xId: 'nairiqz' }
         ]
       },
       {
         id: 'alola',
-        title: 'ƒAƒ[ƒ‰’n•û',
+        title: 'ã‚¢ãƒ­ãƒ¼ãƒ©åœ°æ–¹',
         type: 'cosplayer',
         badgeColor: 'bg-orange-500 text-white',
         borderColor: 'border-orange-200',
         accentBg: 'bg-orange-50',
         members: [
-          { chara: 'ƒAƒZƒƒ‰', name: '‚¯[‚Å‚¡[', xId: 'aossskd' },
-          { chara: 'ƒŠ[ƒŠƒG', name: '”’”¯‚ë‚è', xId: '_Lolita_46' },
-          { chara: 'ƒOƒ‰ƒWƒI', name: '‚Ä‚ñ‚­‚ñ', xId: 'tenkn_sh' },
-          { chara: 'ƒ~ƒYƒL', name: 'š‚Ş‚¬', xId: 'mugita_nashi' },
-          { chara: 'ƒOƒYƒ}', name: '‚µ‚ã‚Ì‚±', xId: 'shunoko_SAO_cos' },
-          { chara: 'ƒXƒCƒŒƒ“', name: '‚«‚å[‚·‚¯', xId: 'Evan_UTxTU' }
+          { chara: 'ã‚¢ã‚»ãƒ­ãƒ©', name: 'ã‘ãƒ¼ã§ãƒãƒ¼', xId: 'aossskd' },
+          { chara: 'ãƒªãƒ¼ãƒªã‚¨', name: 'ç™½é«ªã‚ã‚Š', xId: '_Lolita_46' },
+          { chara: 'ã‚°ãƒ©ã‚¸ã‚ª', name: 'ã¦ã‚“ãã‚“', xId: 'tenkn_sh' },
+          { chara: 'ãƒŸã‚ºã‚­', name: 'â˜…ã‚€ã', xId: 'mugita_nashi' },
+          { chara: 'ã‚°ã‚ºãƒ', name: 'ã—ã‚…ã®ã“', xId: 'shunoko_SAO_cos' },
+          { chara: 'ã‚¹ã‚¤ãƒ¬ãƒ³', name: 'ãã‚‡ãƒ¼ã™ã‘', xId: 'Evan_UTxTU' }
         ]
       },
       {
         id: 'galar',
-        title: 'ƒKƒ‰ƒ‹’n•û',
+        title: 'ã‚¬ãƒ©ãƒ«åœ°æ–¹',
         type: 'cosplayer',
         badgeColor: 'bg-rose-600 text-white',
         borderColor: 'border-rose-200',
         accentBg: 'bg-rose-50',
         members: [
-          { chara: 'ƒƒƒ“', name: 'MAITO', xId: 'Kuroko_c' },
-          { chara: 'ƒ}ƒŠƒB', name: 'DIMM', xId: 'dimmRadio_0222' },
-          { chara: 'ƒIƒŠ[ƒ”', name: '‚à‚ñ‚¶‚á‚í', xId: 'monjawa_cos' },
-          { chara: 'ƒNƒ‰ƒ‰', name: '‚Ê‚¦R‚Ê‚¦‚Á‚¿‚á', xId: 'nuenue249' },
-          { chara: 'ƒ†ƒEƒŠ', name: 'Ø‚Ì‰Ô', xId: 'nanokan_cos' },
-          { chara: 'ƒLƒoƒi', name: 'šARI/ƒPƒoƒuŒZ‚³‚ñ', xId: 'Kebavnissan' },
-          { chara: 'ƒ_ƒ“ƒf', name: '‚ä[‚è', xId: 'yuli_nkym' },
-          { chara: 'ƒzƒbƒv', name: 'ƒAƒJƒoƒl', xId: 'akabane0224' },
-          { chara: 'ƒ}ƒNƒ', name: 'ré g', xId: 'JumpingLine' },
-          { chara: 'ƒr[ƒg', name: '¶ƒnƒ€ƒƒƒ“ƒpƒ“', xId: 'nama_cos' },
-          { chara: 'ƒ\ƒjƒA', name: '‚ ‚Ü‚¬', xId: 'amatyami55' }
+          { chara: 'ãƒ¡ãƒ­ãƒ³', name: 'MAITO', xId: 'Kuroko_c' },
+          { chara: 'ãƒãƒªã‚£', name: 'DIMM', xId: 'dimmRadio_0222' },
+          { chara: 'ã‚ªãƒªãƒ¼ãƒ´', name: 'ã‚‚ã‚“ã˜ã‚ƒã‚', xId: 'monjawa_cos' },
+          { chara: 'ã‚¯ãƒ©ãƒ©', name: 'ã¬ãˆå±±ã¬ãˆã£ã¡ã‚ƒ', xId: 'nuenue249' },
+          { chara: 'ãƒ¦ã‚¦ãƒª', name: 'èœã®èŠ±', xId: 'nanokan_cos' },
+          { chara: 'ã‚­ãƒãƒŠ', name: 'â˜…ARI/ã‚±ãƒãƒ–å…„ã•ã‚“', xId: 'Kebavnissan' },
+          { chara: 'ãƒ€ãƒ³ãƒ‡', name: 'ã‚†ãƒ¼ã‚Š', xId: 'yuli_nkym' },
+          { chara: 'ãƒ›ãƒƒãƒ—', name: 'ã‚¢ã‚«ãƒãƒ', xId: 'akabane0224' },
+          { chara: 'ãƒã‚¯ãƒ¯', name: 'è’åŸ ç´…', xId: 'JumpingLine' },
+          { chara: 'ãƒ“ãƒ¼ãƒˆ', name: 'ç”Ÿãƒãƒ ãƒ¡ãƒ­ãƒ³ãƒ‘ãƒ³', xId: 'nama_cos' },
+          { chara: 'ã‚½ãƒ‹ã‚¢', name: 'ã‚ã¾ã', xId: 'amatyami55' }
         ]
       },
       {
         id: 'paldea',
-        title: 'ƒpƒ‹ƒfƒA’n•û',
+        title: 'ãƒ‘ãƒ«ãƒ‡ã‚¢åœ°æ–¹',
         type: 'cosplayer',
         badgeColor: 'bg-purple-600 text-white',
         borderColor: 'border-purple-200',
         accentBg: 'bg-purple-50',
         members: [
-          { chara: 'ƒyƒp[', name: '‚¿‚ ‚«', xId: 'chiaki_gameplay' },
-          { chara: 'ƒ`ƒŠ', name: '‚È‚é‚ß', xId: 'hiratakedarake' },
-          { chara: 'ƒiƒ“ƒWƒƒƒ‚', name: 'Ã”g‚È‚È', xId: '427_nanana' },
-          { chara: 'ƒ{ƒ^ƒ“', name: '‚Ù‚µ‚İ', xId: 'zghw2' },
-          { chara: 'ƒXƒOƒŠ', name: '‚ç‚ñ‚ª', xId: 'rannga0830' },
-          { chara: 'ƒXƒ^[’c‚µ‚½‚Á‚Ï', name: 'š‚è‚å[‚â‚ñ', xId: 'mohumohuhumuhum' },
-          { chara: 'ƒJƒLƒcƒoƒ^', name: 'š‚³‚¢‚Æ[', xId: 'mystic_thunder_' },
-          { chara: 'ƒOƒ‹[ƒVƒƒ', name: 'Seeyou(‚µ‚ä)', xId: 'seeyou_peanut' },
-          { chara: 'ƒ^ƒ', name: 'pearl', xId: 'llppp_e2a_r11' },
-          { chara: 'ƒAƒIƒL', name: 'šĞ’{‚³‚ñ', xId: 'cquall_cos' },
-          { chara: 'ƒnƒCƒ_ƒC', name: 'šƒpƒbƒ`æ¶', xId: 'pachincoscos' },
-          { chara: 'ƒWƒjƒA', name: 'šƒ†[ƒK', xId: 'yuga46497' },
-          { chara: 'ƒ‰ƒCƒ€', name: 'Œ‹g™z', xId: 'tuki_yosi_' }
+          { chara: 'ãƒšãƒ‘ãƒ¼', name: 'ã¡ã‚ã', xId: 'chiaki_gameplay' },
+          { chara: 'ãƒãƒª', name: 'ãªã‚‹ã‚', xId: 'hiratakedarake' },
+          { chara: 'ãƒŠãƒ³ã‚¸ãƒ£ãƒ¢', name: 'é™æ³¢ãªãª', xId: '427_nanana' },
+          { chara: 'ãƒœã‚¿ãƒ³', name: 'ã»ã—ã¿', xId: 'zghw2' },
+          { chara: 'ã‚¹ã‚°ãƒª', name: 'ã‚‰ã‚“ãŒ', xId: 'rannga0830' },
+          { chara: 'ã‚¹ã‚¿ãƒ¼å›£ã—ãŸã£ã±', name: 'â˜…ã‚Šã‚‡ãƒ¼ã‚„ã‚“', xId: 'mohumohuhumuhum' },
+          { chara: 'ã‚«ã‚­ãƒ„ãƒã‚¿', name: 'â˜…ã•ã„ã¨ãƒ¼', xId: 'mystic_thunder_' },
+          { chara: 'ã‚°ãƒ«ãƒ¼ã‚·ãƒ£', name: 'Seeyou(ã—ã‚†)', xId: 'seeyou_peanut' },
+          { chara: 'ã‚¿ãƒ­', name: 'pearl', xId: 'llppp_e2a_r11' },
+          { chara: 'ã‚¢ã‚ªã‚­', name: 'â˜…ç¤¾ç•œã•ã‚“', xId: 'cquall_cos' },
+          { chara: 'ãƒã‚¤ãƒ€ã‚¤', name: 'â˜…ãƒ‘ãƒƒãƒå…ˆç”Ÿ', xId: 'pachincoscos' },
+          { chara: 'ã‚¸ãƒ‹ã‚¢', name: 'â˜…ãƒ¦ãƒ¼ã‚¬', xId: 'yuga46497' },
+          { chara: 'ãƒ©ã‚¤ãƒ ', name: 'æœˆå‰å‡›', xId: 'tuki_yosi_' }
         ]
       },
       {
         id: 'hisui',
-        title: 'ƒqƒXƒC’n•û',
+        title: 'ãƒ’ã‚¹ã‚¤åœ°æ–¹',
         type: 'cosplayer',
         badgeColor: 'bg-teal-700 text-white',
         borderColor: 'border-teal-200',
         accentBg: 'bg-teal-50',
         members: [
-          { chara: 'ƒVƒ‡ƒE', name: 'ƒl‚Ş', xId: 'munyamunyacat' },
-          { chara: 'ƒEƒHƒ', name: 'šYuuki:7', xId: 'yuuki_s0817' }
+          { chara: 'ã‚·ãƒ§ã‚¦', name: 'ãƒã‚€', xId: 'munyamunyacat' },
+          { chara: 'ã‚¦ã‚©ãƒ­', name: 'â˜…Yuuki:7', xId: 'yuuki_s0817' }
         ]
       },
       {
         id: 'anipoke',
-        title: 'ƒAƒjƒ|ƒP',
+        title: 'ã‚¢ãƒ‹ãƒã‚±',
         type: 'cosplayer',
         badgeColor: 'bg-sky-500 text-white',
         borderColor: 'border-sky-200',
         accentBg: 'bg-sky-50',
         members: [
-          { chara: 'ƒTƒ“ƒS', name: 'Èç–³Œ', xId: 'Panda0nin0' },
-          { chara: 'ƒTƒgƒV', name: 'š‚³‚Ô‚ê', xId: 'sabure_hope' },
-          { chara: 'ƒRƒWƒƒE', name: '‚ ‚«‚­‚ñ', xId: 'halakitto' }
+          { chara: 'ã‚µãƒ³ã‚´', name: 'ç¸å’²ç„¡æœˆ', xId: 'Panda0nin0' },
+          { chara: 'ã‚µãƒˆã‚·', name: 'â˜…ã•ã¶ã‚Œ', xId: 'sabure_hope' },
+          { chara: 'ã‚³ã‚¸ãƒ­ã‚¦', name: 'ã‚ããã‚“', xId: 'halakitto' }
         ]
       },
       {
         id: 'camera',
-        title: 'ƒJƒƒ‰ƒ}ƒ“',
+        title: 'ã‚«ãƒ¡ãƒ©ãƒãƒ³',
         type: 'camera',
         badgeColor: 'bg-cyan-700 text-white',
         borderColor: 'border-cyan-200',
         accentBg: 'bg-cyan-50',
         members: [
-          { chara: 'CAMERA', name: '‚½‚©‚µ', xId: 'taka67380' },
-          { chara: 'CAMERA', name: '‚Ö‚¢‚İ‚ñ', xId: 'heimin36111' },
-          { chara: 'CAMERA', name: 'é³c‹S', xId: 'brabhamBT46B' },
-          { chara: 'CAMERA', name: '‚ß‚ë‚½', xId: 'Melon_S105' },
-          { chara: 'CAMERA', name: '‚Æ[‚×‚ñ', xId: 'toben_cam' },
-          { chara: 'CAMERA', name: '‚©‚İ‚·', xId: 'Training_YG' },
-          { chara: 'CAMERA', name: 'ƒTƒgƒV', xId: 'satoshi0312pedi' },
-          { chara: 'CAMERA', name: 'àŠÄƒtƒŒƒA', xId: 'flare_nico' },
-          { chara: 'CAMERA', name: '—[Œi', xId: 'uke_vol' },
-          { chara: 'CAMERA', name: '‚ ‚¾', xId: 'photogrope360' },
-          { chara: 'CAMERA', name: '¬”n’J—D‰î', xId: 'NavelFilm' },
-          { chara: 'CAMERA', name: '‚İ‚©‚ñæ¶', xId: 'mikan_box' }
+          { chara: 'CAMERA', name: 'ãŸã‹ã—', xId: 'taka67380' },
+          { chara: 'CAMERA', name: 'ã¸ã„ã¿ã‚“', xId: 'heimin36111' },
+          { chara: 'CAMERA', name: 'é­‘çš‡é¬¼', xId: 'brabhamBT46B' },
+          { chara: 'CAMERA', name: 'ã‚ã‚ãŸ', xId: 'Melon_S105' },
+          { chara: 'CAMERA', name: 'ã¨ãƒ¼ã¹ã‚“', xId: 'toben_cam' },
+          { chara: 'CAMERA', name: 'ã‹ã¿ã™', xId: 'Training_YG' },
+          { chara: 'CAMERA', name: 'ã‚µãƒˆã‚·', xId: 'satoshi0312pedi' },
+          { chara: 'CAMERA', name: 'ç…Œæ¦®ãƒ•ãƒ¬ã‚¢', xId: 'flare_nico' },
+          { chara: 'CAMERA', name: 'å¤•æ™¯', xId: 'uke_vol' },
+          { chara: 'CAMERA', name: 'ã‚ã ', xId: 'photogrope360' },
+          { chara: 'CAMERA', name: 'å°é¦¬è°·å„ªä»‹', xId: 'NavelFilm' },
+          { chara: 'CAMERA', name: 'ã¿ã‹ã‚“å…ˆç”Ÿ', xId: 'mikan_box' }
         ]
       },
       {
         id: 'assistant',
-        title: 'ƒAƒVƒXƒ^ƒ“ƒg',
+        title: 'ã‚¢ã‚·ã‚¹ã‚¿ãƒ³ãƒˆ',
         type: 'assistant',
         badgeColor: 'bg-emerald-700 text-white',
         borderColor: 'border-emerald-200',
         accentBg: 'bg-emerald-50',
         members: [
-          { chara: 'STAFF', name: '‚µ‚á‚¨‚«', xId: 'shpho_ot' },
-          { chara: 'STAFF', name: 'ƒAƒŠ[ƒ„MAXƒKƒ€ƒe', xId: 'defghijklmno987' },
+          { chara: 'STAFF', name: 'ã—ã‚ƒãŠã', xId: 'shpho_ot' },
+          { chara: 'STAFF', name: 'ã‚¢ãƒªãƒ¼ãƒ¤MAXã‚¬ãƒ ãƒ†', xId: 'defghijklmno987' },
           { chara: 'STAFF', name: 'NKMN', xId: 'FxerB' },
-          { chara: 'STAFF', name: '‚Ü‚±‚Á‚¿', xId: 'T_M0220CAMERA' }
+          { chara: 'STAFF', name: 'ã¾ã“ã£ã¡', xId: 'T_M0220CAMERA' }
         ]
       }
     ];
 
-    // ==========================================
-    // ó‘ÔŠÇ— & ‰Šú‰»
-    // ==========================================
     const STORAGE_KEY = 'pokemon_cosplay_checked_v1';
     let checkedSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
     let activeCategory = 'all';
     let searchQuery = '';
 
-    // ƒ†ƒj[ƒNID¶¬ƒwƒ‹ƒp[
     function getMemberKey(sectionId, member, index) {
       return `${sectionId}_${member.chara}_${member.xId}_${index}`;
     }
 
-    // ‡Œvl”ƒJƒEƒ“ƒg‚Æ‰Šú•\¦XV
     function updateSummaryCounts() {
       let cosCount = 0;
       let camCount = 0;
@@ -422,12 +414,11 @@
       document.getElementById('checked-counter').textContent = checkedSet.size;
     }
 
-    // ƒJƒeƒSƒŠ[ƒ^ƒu‚Ì•`‰æ
     function renderTabs() {
       const tabsContainer = document.getElementById('category-tabs');
       const allTabs = [
-        { id: 'all', label: '‚·‚×‚Ä' },
-        ...EVENT_DATA.map(sec => ({ id: sec.id, label: sec.title.replace('’n•û', '') }))
+        { id: 'all', label: 'ã™ã¹ã¦' },
+        ...EVENT_DATA.map(sec => ({ id: sec.id, label: sec.title.replace('åœ°æ–¹', '') }))
       ];
 
       tabsContainer.innerHTML = allTabs.map(tab => {
@@ -455,7 +446,6 @@
       });
     }
 
-    // ƒNƒŠƒbƒvƒ{[ƒhƒRƒs[iexecCommandg—pj
     function copyTextToClipboard(text) {
       const tempInput = document.createElement('input');
       tempInput.value = text;
@@ -463,14 +453,13 @@
       tempInput.select();
       try {
         document.execCommand('copy');
-        showToast(`@${text} ‚ğƒRƒs[‚µ‚Ü‚µ‚½`);
+        showToast(`@${text} ã‚’ã‚³ãƒ”ãƒ¼ã—ã¾ã—ãŸ`);
       } catch (e) {
         console.error('Copy failed', e);
       }
       document.body.removeChild(tempInput);
     }
 
-    // ƒg[ƒXƒg’Ê’m
     let toastTimer = null;
     function showToast(msg) {
       const toast = document.getElementById('toast');
@@ -484,7 +473,6 @@
       }, 2000);
     }
 
-    // ƒ`ƒFƒbƒNó‘Ô‚ÌØ‚è‘Ö‚¦
     function toggleCheck(key) {
       if (checkedSet.has(key)) {
         checkedSet.delete(key);
@@ -496,7 +484,6 @@
       renderList();
     }
 
-    // ƒƒCƒ“ƒŠƒXƒg‚Ì•`‰æ
     function renderList() {
       const container = document.getElementById('list-container');
       const emptyState = document.getElementById('empty-state');
@@ -509,7 +496,6 @@
           return '';
         }
 
-        // ŒŸõƒtƒBƒ‹ƒ^ƒŠƒ“ƒO
         const filteredMembers = section.members
           .map((m, idx) => ({ ...m, originalIndex: idx }))
           .filter(m => {
@@ -529,30 +515,28 @@
           const memberKey = getMemberKey(section.id, member, member.originalIndex);
           const isChecked = checkedSet.has(memberKey);
           const cleanId = member.xId.replace(/^@/, '');
-          const isMaleLayer = member.name.startsWith('š');
+          const isMaleLayer = member.name.startsWith('â˜…');
 
-          // ƒLƒƒƒ‰•\¦ƒoƒbƒWiƒXƒ^ƒbƒt/ƒJƒƒ‰‚Ìê‡‚ÍƒAƒCƒRƒ“•\¦j
           let roleBadge = '';
           if (section.type === 'camera') {
-            roleBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-cyan-100 text-cyan-800"><i class="fa-solid fa-camera"></i> ƒJƒƒ‰ƒ}ƒ“</span>`;
+            roleBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-cyan-100 text-cyan-800"><i class="fa-solid fa-camera"></i> ã‚«ãƒ¡ãƒ©ãƒãƒ³</span>`;
           } else if (section.type === 'assistant') {
-            roleBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800"><i class="fa-solid fa-headset"></i> ƒAƒVƒXƒ^ƒ“ƒg</span>`;
+            roleBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800"><i class="fa-solid fa-headset"></i> ã‚¢ã‚·ã‚¹ã‚¿ãƒ³ãƒˆ</span>`;
           } else {
             roleBadge = `<span class="inline-block text-xs font-extrabold px-2.5 py-0.5 rounded-md ${section.accentBg} text-slate-800 border ${section.borderColor}">${member.chara}</span>`;
           }
 
           return `
             <div class="relative bg-white rounded-2xl border ${isChecked ? 'card-checked' : 'border-slate-200/90'} p-3.5 shadow-xs hover:shadow-md transition flex flex-col justify-between gap-2.5">
-              <!-- ã’iFƒLƒƒƒ‰–¼ & ƒ`ƒFƒbƒNƒ{ƒ^ƒ“ -->
               <div class="flex items-start justify-between gap-2">
                 <div class="flex flex-wrap items-center gap-1.5">
                   ${roleBadge}
-                  ${isMaleLayer ? '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">š’j«</span>' : ''}
+                  ${isMaleLayer ? '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">â˜…ç”·æ€§</span>' : ''}
                 </div>
 
                 <button
                   onclick="toggleCheck('${memberKey}')"
-                  aria-label="‡—¬EB‰eƒ`ƒFƒbƒN"
+                  aria-label="åˆæµãƒ»æ’®å½±ãƒã‚§ãƒƒã‚¯"
                   class="w-7 h-7 rounded-full flex items-center justify-center border transition shrink-0 ${
                     isChecked
                       ? 'bg-emerald-500 border-emerald-500 text-white shadow-xs'
@@ -563,14 +547,12 @@
                 </button>
               </div>
 
-              <!-- ’†’iFQ‰ÁÒ–¼ -->
               <div>
                 <div class="text-base font-bold text-slate-900 leading-snug ${isChecked ? 'line-through text-slate-500' : ''}">
                   ${member.name}
                 </div>
               </div>
 
-              <!-- ‰º’iFX (Twitter) ƒŠƒ“ƒN & IDƒRƒs[ -->
               <div class="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
                 <a
                   href="https://x.com/${encodeURIComponent(cleanId)}"
@@ -586,7 +568,7 @@
                 <button
                   onclick="copyTextToClipboard('${cleanId}')"
                   class="text-[11px] text-slate-400 hover:text-slate-700 px-2 py-1 rounded-lg hover:bg-slate-100 transition shrink-0"
-                  title="ID‚ğƒRƒs["
+                  title="IDã‚’ã‚³ãƒ”ãƒ¼"
                 >
                   <i class="fa-regular fa-copy"></i>
                 </button>
@@ -603,7 +585,7 @@
                   ${section.title}
                 </span>
                 <span class="text-xs font-bold text-slate-500">
-                  ${filteredMembers.length}–¼
+                  ${filteredMembers.length}å
                 </span>
               </div>
             </div>
@@ -624,9 +606,6 @@
       }
     }
 
-    // ==========================================
-    // ƒCƒxƒ“ƒgƒŠƒXƒi[“o˜^
-    // ==========================================
     window.addEventListener('DOMContentLoaded', () => {
       updateSummaryCounts();
       renderTabs();
@@ -648,11 +627,10 @@
         renderList();
       });
 
-      // ƒŠƒZƒbƒgƒ‚[ƒ_ƒ‹§Œä
       const modal = document.getElementById('confirm-modal');
       document.getElementById('reset-checks').addEventListener('click', () => {
         if (checkedSet.size === 0) {
-          showToast('ƒ`ƒFƒbƒNÏ‚İ‚Ì€–Ú‚Í‚ ‚è‚Ü‚¹‚ñ');
+          showToast('ãƒã‚§ãƒƒã‚¯æ¸ˆã¿ã®é …ç›®ã¯ã‚ã‚Šã¾ã›ã‚“');
           return;
         }
         modal.classList.remove('hidden');
@@ -668,7 +646,7 @@
         document.getElementById('checked-counter').textContent = '0';
         modal.classList.add('hidden');
         renderList();
-        showToast('ƒ`ƒFƒbƒN‚ğƒŠƒZƒbƒg‚µ‚Ü‚µ‚½');
+        showToast('ãƒã‚§ãƒƒã‚¯ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã—ãŸ');
       });
     });
   </script>
