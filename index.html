@@ -112,7 +112,7 @@
     <!-- 地方カテゴリータブ -->
     <div id="category-tabs-wrapper" class="bg-slate-800/60 border-t border-slate-700/80">
       <div id="category-tabs" class="max-w-5xl mx-auto px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-        <!-- JSで動적生成 -->
+        <!-- JSで動的生成 -->
       </div>
     </div>
   </header>
@@ -303,7 +303,7 @@
           { chara: 'グリ', name: 'ゆうと', xId: '_y_u_t_o_' },
           { chara: 'マーシュ', name: 'シュウラ', xId: 'kinha0817shura' },
           { chara: 'カルネ', name: 'ペコ', xId: 'peco_cosphoto' },
-          { chara: 'デウロ', name: 'かに', xId: '_kani_kaniko' },
+          { chara: 'デウロ', name: 'かに', xId: '_kani_kanico' },
           { chara: 'セレナ', name: 'りつた', xId: 'ricchan_ne' },
           { chara: 'カルム', name: '★まもる', xId: 'mamoru_seaside' },
           { chara: 'ユカリ', name: 'りりほん', xId: 'ririhon_sub' },
@@ -790,7 +790,7 @@
 
       if (totalVisibleSections === 0) {
         container.innerHTML = '';
-        emptyState.classList.remove('hidden');
+        emptyState.classList.add('hidden');
       } else {
         emptyState.classList.add('hidden');
         container.innerHTML = html;
