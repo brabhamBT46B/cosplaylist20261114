@@ -120,7 +120,7 @@
   <!-- メインコンテンツ -->
   <main class="max-w-5xl mx-auto px-4 pt-4">
 
-    <!-- 【ページ1】参加者リストビュー（大きめアイコン付き） -->
+    <!-- 【ページ1】参加者リストビュー -->
     <div id="view-list" class="space-y-4">
       <div class="bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 mb-5 flex flex-wrap items-center justify-between gap-2 text-xs text-amber-900">
         <div class="flex items-center gap-2">
@@ -145,7 +145,7 @@
       </div>
     </div>
 
-    <!-- 【ページ2】タイムテーブルビュー（名前のみのすっきりリンク） -->
+    <!-- 【ページ2】タイムテーブルビュー -->
     <div id="view-timetable" class="hidden space-y-6">
       <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
         <div class="flex items-center justify-between mb-4">
@@ -434,14 +434,24 @@
       }
     ];
 
+    // タイムテーブル用：名前の表記ゆれを完全に吸収するマップ
     const memberMap = {};
     EVENT_DATA.forEach(sec => {
       sec.members.forEach(m => {
         memberMap[m.name] = m;
         const cleanName = m.name.replace(/^★/, '');
         memberMap[cleanName] = m;
+        memberMap[cleanName.toLowerCase()] = m;
       });
     });
+
+    // タイムテーブル上の表記ゆれ対応の個別マッピング
+    const timetableNameFix = {
+      'seeyou': 'Seeyou(しゆ)',
+      'しある': 'SHIAr',
+      'pearl': 'pearl',
+      'peco': 'ペコ'
+    };
 
     const TIMETABLE_DATA = [
       {
@@ -482,17 +492,20 @@
         html += `<tr>`;
         html += `<td class="p-2.5 font-bold bg-slate-50 border-r border-slate-200 sticky left-0 z-10">${row.time}</td>`;
 
-        row.names.forEach(name => {
-          if (!name) {
+        row.names.forEach(rawName => {
+          if (!rawName) {
             html += `<td class="p-2.5 bg-slate-50 text-slate-400"></td>`;
             return;
           }
 
-          let member = memberMap[name];
+          // 表記ゆれ辞書があれば変換、なければそのまま
+          const lookupKey = timetableNameFix[rawName.toLowerCase()] || rawName;
+          let member = memberMap[lookupKey] || memberMap[rawName] || memberMap[rawName.toLowerCase()];
+
           if (!member) {
-            const foundSec = EVENT_DATA.find(s => s.members.some(m => m.name.includes(name) || m.chara.includes(name)));
+            const foundSec = EVENT_DATA.find(s => s.members.some(m => m.name.includes(rawName) || m.chara.includes(rawName)));
             if (foundSec) {
-              member = foundSec.members.find(m => m.name.includes(name) || m.chara.includes(name));
+              member = foundSec.members.find(m => m.name.includes(rawName) || m.chara.includes(rawName));
             }
           }
 
@@ -500,13 +513,13 @@
             const cleanId = member.xId.replace(/^@/, '');
             html += `
               <td class="p-2.5 bg-amber-50/30 hover:bg-amber-100/50 transition">
-                <a href="https://x.com/${encodeURIComponent(cleanId)}" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-sky-600 font-bold underline decoration-slate-300 underline-offset-2 transition">
-                  ${name}
+                <a href="https://x.com/${encodeURIComponent(cleanId)}" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-sky-600 font-bold underline decoration-slate-300 underline-offset-2 transition" title="@${cleanId}">
+                  ${rawName}
                 </a>
               </td>
             `;
           } else {
-            html += `<td class="p-2.5">${name}</td>`;
+            html += `<td class="p-2.5">${rawName}</td>`;
           }
         });
 
